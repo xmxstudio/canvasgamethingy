@@ -5,11 +5,14 @@ let pickup = (x,y,s)=>{
 		y: y ||  Math.random() * 200 + 1,
 		size: s ||  Math.random()*2+0.1,
 		dead: false,
-		life: 10,
+		life: 100,
 		name: ['piercing','jumpboots','shotgun'][Math.floor(Math.random() * 3)],
 		c: `rgba(${Math.random() * 255},0,${Math.random() * 255},1)`,
 		update: function(){
-
+			life -= 0.01;
+			if(life<=0){
+				this.dead = true;
+			}
 		},
 		draw: function(){
 			ctx.beginPath();

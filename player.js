@@ -57,7 +57,7 @@ let player = {
 					player.xvel = platform.xvel;
 				}
 				player.yvel = 0;
-				console.log(250-player.y, platform.bounds.top);
+		//		console.log(250-player.y, platform.bounds.top);
 				if(Math.abs((250-player.y) - platform.bounds.top) <5 && (player.x >= platform.bounds.x && player.x <= platform.bounds.right)){
 				  player.y = (250-platform.bounds.top); 
 					player.yvel = 0;
@@ -70,19 +70,22 @@ let player = {
 			}
 		});
 		pickups.forEach(pickup=>{
+
 			let x = pickup.x - player.x;
 			let y = pickup.y - (250-player.y);
 			let d = Math.sqrt(x * x + y*y) 
-			console.log(d);
+			//console.log(d);
 			if (d<5){
 				emitters.push(particleEmitter(pickup.x, pickup.y,0,0,player.c,5));
 				emitters.push(textEmitter(pickup.name, pickup.x, pickup.y,0,0,player.c,3));
 				pickup.dead = true;
-				player.pickups.push(pickup.name);
+				player.pickups.push(pickup);
 				sounds.pickup.play();
 			}
+			//apickup.update();
 				//		let d =  Math.sqrt(x * x + y * y);
 		})
+		//pickups = pickups.filter(p=>!p.dead)
 	},
 	draw: function(){
 		ctx.fillStyle=this.c;

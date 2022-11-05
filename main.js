@@ -27,7 +27,7 @@ const update=_=>{
 		if(input.d){	player.xvel = input.shift?3:1;}
 		if(input.space && (player.isGrounded || player.isPlatformGrounded)){  
 			
-			player.yvel =  player.pickups.includes('jumpboots') ? 5: 3 ;
+			player.yvel =  player.pickups.filter(p=>p.name==='jumpboots').length >0 ? 5: 3 ;
 			player.isGrounded = false;
 			player.isPlatformGrounded = false;
 			sounds.jump.play();
@@ -121,7 +121,7 @@ c.addEventListener('mousedown',e=>{
 	let y = e.offsetY;
 	ctx.fillRect(x,y,1,1);
 
-	if(player.pickups.includes('shotgun')){
+	if(player.pickups.filter(p=>p.name=="shotgun").length ){
 		let b1 = projectile(player.x,250-player.y, Math.atan2((y+ (Math.random()*30))-(250-player.y),(x + Math.random()*30) -player.x),player.isGrounded, player.name);
 		let b2 = projectile(player.x,250-player.y, Math.atan2((y- (Math.random()*30))-(250-player.y),(x - Math.random()*30) -player.x),player.isGrounded, player.name);
 		let b3 = projectile(player.x,250-player.y, Math.atan2((y- (Math.random()*30))-(250-player.y),(x - Math.random()*30) -player.x),player.isGrounded, player.name);

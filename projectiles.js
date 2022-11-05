@@ -42,7 +42,7 @@ let projectile = (x,y,a,grounded,owner)=>{
 			platforms.forEach(platform=>{
 				if(that.x >= platform.bounds.left && that.x <= platform.bounds.right && that.y >= platform.bounds.top && that.y <= platform.bounds.bottom ){
 					
-					if(!player.pickups.includes('piercing')){
+					if(player.pickups.filter(p=>p.name==='piercing').length==0){
 						that.dead = true;
 					}
 					sounds.explosion.play();
